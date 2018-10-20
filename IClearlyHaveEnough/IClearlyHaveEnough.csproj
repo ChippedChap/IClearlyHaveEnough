@@ -58,7 +58,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MouseAttachmentPatcher.cs" />
+    <Compile Include="AllResourcesCounter_MapComponent.cs" />
+    <Compile Include="PatcherDrawPanelReadout.cs" />
+    <Compile Include="PatcherMouseAttachment.cs" />
     <Compile Include="IClearlyHaveEnoughInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
