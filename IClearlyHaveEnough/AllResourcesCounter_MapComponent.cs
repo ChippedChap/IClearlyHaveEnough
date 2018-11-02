@@ -11,8 +11,6 @@ namespace IClearlyHaveEnough
 
 		public AllResourcesCounter_MapComponent(Map map) : base(map)
 		{
-			RefillDefs();
-			UpdateResourceCounts();
 		}
 
 		public override void MapComponentTick()
@@ -21,6 +19,12 @@ namespace IClearlyHaveEnough
 			{
 				UpdateResourceCounts();
 			}
+		}
+
+		public override void FinalizeInit()
+		{
+			RefillDefs();
+			UpdateResourceCounts();
 		}
 
 		public int GetCount(ThingDef def)
