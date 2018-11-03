@@ -7,7 +7,7 @@ namespace IClearlyHaveEnough
 	class AllResourcesCounter_MapComponent : MapComponent
 	{
 		private Dictionary<ThingDef, int> resourceCounts = new Dictionary<ThingDef, int>();
-		private List<ThingDef> resourceThingDefs = new List<ThingDef>();
+		private HashSet<ThingDef> resourceThingDefs = new HashSet<ThingDef>();
 
 		public AllResourcesCounter_MapComponent(Map map) : base(map)
 		{
@@ -25,6 +25,11 @@ namespace IClearlyHaveEnough
 		{
 			RefillDefs();
 			UpdateResourceCounts();
+		}
+
+		public bool ShouldTrackThing(Thing thing)
+		{
+			return resourceThingDefs.Contains(thing.def);
 		}
 
 		public int GetCount(ThingDef def)
@@ -46,22 +51,22 @@ namespace IClearlyHaveEnough
 		public void UpdateResourceCounts()
 		{
 			resourceCounts.Clear();
-			for (int i = 0; i < resourceThingDefs.Count; i++)
+			foreach (ThingDef resourceDef in resourceThingDefs)
 			{
-				List <Thing> listOfCurDef = map.listerThings.ThingsOfDef(resourceThingDefs[i]);
+				List <Thing> listOfCurDef = map.listerThings.ThingsOfDef(resourceDef);
 				int resourceCount = 0;
 				for (int j = 0; j < listOfCurDef.Count; j++)
 				{
 					resourceCount += listOfCurDef[j].stackCount;
 				}
-				resourceCounts.Add(resourceThingDefs[i], resourceCount);
+				resourceCounts.Add(resourceDef, resourceCount);
 			}
 		}
 
 		private void RefillDefs()
 		{
 			resourceThingDefs.Clear();
-			resourceThingDefs.AddRange(DefDatabase<ThingDef>.AllDefs.Where(def => def.CountAsResource));
+			resourceThingDefs = new HashSet<ThingDef>(DefDatabase<ThingDef>.AllDefs.Where(def => def.CountAsResource));
 		}
 	}
 }
