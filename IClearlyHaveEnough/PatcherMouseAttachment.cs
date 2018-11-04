@@ -12,21 +12,20 @@ namespace IClearlyHaveEnough
 	{
 		static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			var instrList = new List<CodeInstruction>(instructions);
-			for (int i = 0; i < instrList.Count; i++)
+			foreach (CodeInstruction instruction in instructions)
 			{
-				if (instrList[i].opcode == OpCodes.Ldfld && instrList[i].operand == typeof(Map).GetField("resourceCounter")) continue;
-				if (instrList[i].opcode == OpCodes.Callvirt && instrList[i].operand == typeof(ResourceCounter).GetMethod("GetCount"))
+				if (instruction.opcode == OpCodes.Ldfld && instruction.operand == typeof(Map).GetField("resourceCounter")) continue;
+				if (instruction.opcode == OpCodes.Callvirt && instruction.operand == typeof(ResourceCounter).GetMethod("GetCount"))
 				{
 					yield return new CodeInstruction(OpCodes.Call, typeof(PatcherMouseAttachment).GetMethod("GetPresentOnMap"));
 					continue;
 				}
-				if (instrList[i].opcode == OpCodes.Ldstr && instrList[i].operand.Equals("NotEnoughStoredLower"))
+				if (instruction.opcode == OpCodes.Ldstr && instruction.operand.Equals("NotEnoughStoredLower"))
 				{
 					yield return new CodeInstruction(OpCodes.Ldstr, "NotEnoughPresentLower");
 					continue;
 				}
-				yield return instrList[i];
+				yield return instruction;
 			}
 		}
 
