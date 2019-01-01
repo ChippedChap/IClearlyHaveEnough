@@ -59,11 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllResourcesCounter_MapComponent.cs" />
-    <Compile Include="PatcherDrawPanelReadout.cs" />
-    <Compile Include="PatcherMouseAttachment.cs" />
+    <Compile Include="Patches\PatcherDrawPanelReadout.cs" />
+    <Compile Include="Patches\PatcherMouseAttachment.cs" />
     <Compile Include="IClearlyHaveEnoughInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UpdateOnArchitectOpen.cs" />
+    <Compile Include="Patches\UpdateOnArchitectOpen.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

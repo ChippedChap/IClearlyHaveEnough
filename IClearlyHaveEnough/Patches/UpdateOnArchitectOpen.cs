@@ -2,7 +2,7 @@
 using RimWorld;
 using Verse;
 
-namespace IClearlyHaveEnough
+namespace IClearlyHaveEnough.Patches
 {
 	[HarmonyPatch(typeof(MainTabWindow_Architect))]
 	[HarmonyPatch("PostOpen")]

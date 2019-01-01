@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection.Emit;
 using Verse;
 
-namespace IClearlyHaveEnough
+namespace IClearlyHaveEnough.Patches
 {
 	[HarmonyPatch(typeof(Designator_Build))]
 	[HarmonyPatch("DrawPanelReadout")]

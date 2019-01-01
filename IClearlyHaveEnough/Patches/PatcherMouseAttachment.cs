@@ -4,7 +4,7 @@ using Harmony;
 using RimWorld;
 using Verse;
 
-namespace IClearlyHaveEnough
+namespace IClearlyHaveEnough.Patches
 {
 	[HarmonyPatch(typeof(Designator_Build))]
 	[HarmonyPatch("DrawMouseAttachments")]
